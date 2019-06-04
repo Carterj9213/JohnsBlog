@@ -1,0 +1,124 @@
+﻿@using JohnsBlog.Models
+
+@model BlogPost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="single">
+    <div class="container text-center">
+        <div class="row">
+            <div class="single-grid">
+                @if (Model.MediaUrl != null)
+                {
+
+                    <img class="img-responsive" src="@Model.MediaUrl" alt="" />
+
+                }
+                <br />
+                <hr />
+                <p>
+                    @Html.Raw(Model.Body)
+
+                </p>
+
+
+
+
+
+            </div><hr />
+
+            <div>
+                @if (Model.Comments.Count > 0)
+                {
+                    foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+                    {
+                        <ul class="comment-list">
+                            <h5 class="post-author_head">Written by @comment.Author.Email</h5>   
+                            <li>
+                                <img src="~/images/avatar.png" class="img-responsive" alt="">
+                                <div class="desc">
+                                    
+                                    <p class="comment-text text-center">Comment: @comment.CommentBody</p><br />
+                                    <p>Posted: @comment.Created</p><hr />
+
+                                    @if (User.IsInRole("Moderator"))
+                                    {
+                                        <p>@Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, null)</p>
+                                    }
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+                                        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) @:
+                                    }
+
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+
+                        </ul>
+
+                    }
+
+                }
+
+            </div>
+
+
+            <div class="content-form">
+                <h3>Leave a Comment:</h3><br />
+                <h4>To leave a comment you must have an account and be signed in. To do so, click the Login button below and follow the steps:</h4> <br />
+
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("BlogPostId", Model.Id)
+                        @Html.HiddenFor(model => model.Slug)
+
+                        <textarea name="CommentBody" placeholder="Message"></textarea>
+                        <input type="submit" value="ADD" />
+                    }
+                }
+                else
+                {
+
+                    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-primary" })
+                }
+
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<p>
+    @if (User.IsInRole("Admin")) 
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id}) @:|
+     }
+
+    @Html.ActionLink("Back to List", "Index", "Home")
+    
+   
+
+</p>

@@ -1,0 +1,118 @@
+﻿.btnLinkCustom {
+    background-color: white;
+    margin: 1em 1.7em 1em 0em;
+    display: block;
+    color: #4a5054;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
+
+
+
+.Login-content h2 {
+    color: #00aeff;
+}
+
+.plainLi{
+    list-style: none;
+}
+
+.search form input[type="text"] {
+    color: black;
+    background: white;
+    border:inset;
+}
+
+.parallax {
+    /* The image used */
+    
+    background-image: url('../Images/blog-pic-b2c.jpg');
+    /* Set a specific height */
+    height: 400px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-menu ul li a {
+    margin: 1em 1.7em 1em 0em;
+    display: block;
+    color: white;
+    font-weight: 800;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
+
+.desc p {
+    font-size: 1.2em;
+    color: black;
+    margin-top: 1em;
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+}
+
+ul.comment-list {
+    border: solid blue;
+    padding: 2em;
+    margin: 3em 0;
+    list-style: none;
+}
+
+h5.post-author_head {
+    font-size: 1.3em;
+    color: black;
+    margin: 0 0 1em;
+}
+p.comment-text{
+    color: blue; 
+}
+
+.single-grid p {
+    font-family: 'Lato', sans-serif;
+    color: black;
+    font-size: 1em;
+    line-height: 1.8em;
+    margin: 1em 0;
+    text-align: justify;
+}
+
+.content-form h3 {
+    color: blue;
+    margin-bottom: 1em;
+    text-decoration: none;
+    display: block;
+    font-family: 'Oswald', sans-serif;
+}
+
+/*ul.topnav {
+    background-color: black;
+    list-style: none;
+
+}*/
+
+.top-menu {
+    float: left;
+    width: 100%;
+    margin-top: .1em;
+    background-color: black;
+    opacity: 0.7;
+    text-align: center;
+}
+
+.search {
+    width: 55%;
+    position: relative;
+    margin-top: 0.5em;
+    float: right;
+}

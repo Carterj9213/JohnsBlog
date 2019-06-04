@@ -1,0 +1,199 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>My Personal Blog</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+    <link rel="shortcut icon" href="~/Images/Webp.net-resizeimage.jpg" />
+
+
+    <!--bootstrap-->
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    
+    <!----webfonts---->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/Custom.css" rel="stylesheet" />
+</head>
+<body>
+    <!---header---->
+    
+
+        <div class="header">
+            <div class="parallax"/>
+
+
+
+                <div class="container">
+
+
+
+                                <!---start-top-nav---->
+                         @*<div class="top-menu">*@
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-7">
+
+                                        <div class="top-menu">
+                                            <ul class="topnav">
+                                                <li>
+                                                    @Html.ActionLink("HOME", "Index", "Home")
+                                                </li>
+                                                <li><a href="@Url.Action("About", "Home")">ABOUT</a></li>
+
+                                                <li>
+                                                    @Html.ActionLink("CONTACT", "Contact", "Home")
+                                                </li>
+
+
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    <li>
+                                                        @Html.ActionLink("INDEX", "Index", "BlogPosts")
+                                                    </li>
+
+                                                    <li>
+                                                        @Html.ActionLink("CREATE POST", "Create", "BlogPosts")
+                                                    </li>
+                                                }
+
+
+
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <li>
+                                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <button type="submit" class="btn btn-Link btnLinkCustom">Log Off</button>
+                                                        }
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        @Html.ActionLink("LOGIN", "Login", "Account")
+                                                    </li>
+                                                }
+
+
+                                                @*<div class="clearfix"></div>*@
+                                            </ul>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="search">
+                                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+                                            {
+                                                <input name="searchStr" type="text" placeholder="Search" required="">
+                                                <input type="submit" value="" />
+                                            }
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+
+
+
+                                @*<div class="clearfix"></div>*@
+
+
+                            @*</div>*@
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    
+
+
+    <!--/header-->
+
+    @RenderBody()
+
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <p>Copyrights © 2015 Blog All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a> Edited by John Carter</p>
+        </div>
+    </div>
+    <!--end footer-->
+    <!--SCRIPTS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="~/Scripts/move-top.js"></script>
+    <script src="~/Scripts/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
+            });
+        });
+    </script>
+    <script>
+        $("span.menu").click(function () {
+            $(".top-menu ul").slideToggle("slow", function () {
+            });
+        });
+    </script>
+
+
+
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+
+    <script>
+        $(function () {
+            tinymce.init({
+                selector: ".TinyMceSelector"
+            });
+
+        });
+
+
+    </script>
+
+    @RenderSection("scripts", required: false);
+</body>
+
+</html>
